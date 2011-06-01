@@ -72,9 +72,11 @@ module Barista
 
         return File.read(destination_path) unless dirty?(origin_path, destination_path) || force
         # Ensure we have a coffeescript compiler available.
+        if false
         if !check_availability!(silence_error)
           Barista.debug "The coffeescript compiler at '#{Compiler.bin_path}' is currently unavailable."
           return nil
+        end
         end
         Barista.debug "Compiling #{file} from framework '#{framework.name}'"
         compiler = new(origin_path, :silence_error => silence_error, :output_path => destination_path)
